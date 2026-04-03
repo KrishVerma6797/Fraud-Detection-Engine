@@ -38,6 +38,8 @@ ML PROJECT - FRAUD DET/
 │   ├── predict.py
 │   └── streamlit_app.py
 │
+├── generate_data.py
+│
 ├── data/
 │   └── realistic_fraud_dataset_200k.csv
 │
@@ -55,131 +57,7 @@ ML PROJECT - FRAUD DET/
 └── README.md
 ```
 
----
 
-## 🧠 Model Architecture
-
-### 🔹 Algorithm
-XGBoost (Gradient Boosted Decision Trees)
-
-### 🔹 Problem Type
-Binary Classification (Fraud vs Non-Fraud)
-
-### 🔹 Train-Test Split
-- 80% Training
-- 20% Testing
-- Stratified sampling
-- `random_state = 42`
-
-### 🔹 Hyperparameters
-
-```python
-n_estimators = 200
-max_depth = 5
-learning_rate = 0.1
-eval_metric = "logloss"
-```
-
----
-
-## 📊 Features Used
-
-The model is trained on the following transaction-level features:
-
-- `amount`
-- `hour`
-- `is_international`
-- `transaction_gap`
-- `location_risk`
-- `device_risk`
-- `merchant_risk`
-
-All numerical features are scaled using **StandardScaler**.
-
----
-
-## ⚙️ Core Modules
-
-### 🔹 Training — `src/train.py`
-
-- Loads dataset
-- Separates features and target
-- Applies StandardScaler
-- Trains XGBClassifier
-- Evaluates performance
-- Saves model and scaler to `/models`
-
----
-
-### 🔹 Preprocessing — `src/preprocess.py`
-
-- Handles feature-target separation
-- Performs scaling
-- Returns fitted scaler
-
----
-
-### 🔹 Evaluation — `src/evaluate.py`
-
-Model evaluation includes:
-
-- Classification Report
-- ROC-AUC Score
-- PR-AUC Score
-- Confusion Matrix
-
----
-
-### 🔹 Explainability — `src/explain.py`
-
-- Uses SHAP TreeExplainer
-- Generates SHAP summary plot
-- Interprets feature contributions
-
----
-
-### 🔹 Inference — `app/predict.py`
-
-- Loads trained model and scaler
-- Accepts transaction feature input
-- Returns:
-  - Binary prediction
-  - Fraud probability score
-
----
-
-### 🔹 Deployment — `app/streamlit_app.py`
-
-Interactive Streamlit dashboard featuring:
-
-- Real-time transaction input
-- Adjustable decision threshold
-- Fraud probability visualization
-- Expected business loss estimation
-- ROC curve visualization
-- Precision-Recall curve visualization
-- Feature importance chart
-
----
-
-## 💰 Business Logic Layer
-
-The system integrates cost-sensitive fraud decision modeling.
-
-### 🔹 Default Parameters
-
-- Fraud Loss: ₹5000
-- False Positive Cost: ₹200
-- Decision Threshold: 0.4
-
-### 🔹 Expected Loss Formula
-
-- If fraud predicted → `fraud_loss × probability`
-- If legitimate → `false_positive_cost × probability`
-
-This enables business-oriented fraud risk estimation rather than pure ML prediction.
-
----
 
 ## 🛠️ Installation & Setup
 
@@ -187,7 +65,7 @@ This enables business-oriented fraud risk estimation rather than pure ML predict
 
 ```bash
 git clone <your-repository-link>
-cd ML PROJECT - FRAUD DET
+cd Fraud-Detection-Engine
 ```
 
 ### Step 2: Install Dependencies
