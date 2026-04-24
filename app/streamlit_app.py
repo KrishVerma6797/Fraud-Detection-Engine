@@ -144,13 +144,13 @@ with tab2:
 
     cm = confusion_matrix(y, y_pred)
 
-    fig_cm, ax_cm = plt.subplots()
+    fig_cm, ax_cm = plt.subplots(figsize=(1.9, 1.9))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax_cm)
     ax_cm.set_title("Confusion Matrix")
     ax_cm.set_xlabel("Predicted")
     ax_cm.set_ylabel("Actual")
 
-    st.pyplot(fig_cm)
+    st.pyplot(fig_cm, use_container_width=False)
     plt.close(fig_cm)
 
     st.write(f"ROC AUC Score: {auc:.3f}")
@@ -162,21 +162,21 @@ with tab2:
     # -----------------------------
     fpr, tpr, _ = roc_curve(y, y_proba)
 
-    fig1, ax1 = plt.subplots()
+    fig1, ax1 = plt.subplots(figsize=(2.1, 2.1))
     ax1.plot(fpr, tpr)
     ax1.set_title("ROC Curve")
     ax1.set_xlabel("False Positive Rate")
     ax1.set_ylabel("True Positive Rate")
-    st.pyplot(fig1)
+    st.pyplot(fig1, use_container_width=False)
 
     # -----------------------------
     # Precision-Recall Curve
     # -----------------------------
     precision, recall, _ = precision_recall_curve(y, y_proba)
 
-    fig2, ax2 = plt.subplots()
+    fig2, ax2 = plt.subplots(figsize=(2, 2))
     ax2.plot(recall, precision)
     ax2.set_title("Precision-Recall Curve")
     ax2.set_xlabel("Recall")
     ax2.set_ylabel("Precision")
-    st.pyplot(fig2)
+    st.pyplot(fig2, use_container_width=False)
