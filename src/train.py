@@ -14,9 +14,10 @@ def train_model():
     X = df.drop(["fraud", "transaction_id"], axis=1)
     y = df["fraud"]
 
-
+    # 1. Split FIRST
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
 
+# 2. Then scale
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
@@ -42,6 +43,9 @@ def train_model():
     print(classification_report(y_test, y_pred))
     print("ROC-AUC:", roc_auc_score(y_test, y_proba))
 
+
+    pd.DataFrame(X_test).to_csv("data/X_test.csv", index=False)
+    pd.DataFrame(y_test).to_csv("data/y_test.csv", index=False)
     joblib.dump(model, "models/xgb_model.pkl")
     joblib.dump(scaler, "models/scaler.pkl")
 
