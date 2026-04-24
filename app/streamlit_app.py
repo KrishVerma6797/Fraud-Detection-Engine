@@ -129,12 +129,10 @@ with tab2:
     model = joblib.load("models/xgb_model.pkl")
     scaler = joblib.load("models/scaler.pkl")
 
-    df = pd.read_csv("data/realistic_fraud_dataset_200k.csv")
+    X = pd.read_csv("data/X_test.csv")
+    y = pd.read_csv("data/y_test.csv").values.ravel()
 
-    X = df.drop(["fraud", "transaction_id"], axis=1)
-    y = df["fraud"]
-
-    X_scaled = scaler.transform(X)
+    X_scaled = X
 
     y_proba = model.predict_proba(X_scaled)[:, 1]
 
