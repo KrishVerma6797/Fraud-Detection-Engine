@@ -7,7 +7,6 @@ This project implements the complete ML lifecycle:
 - Data preprocessing
 - Model training
 - Performance evaluation
-- Model explainability (SHAP)
 - Deployment using Streamlit
 
 ---
@@ -49,8 +48,6 @@ ML PROJECT - FRAUD DET/
 │
 ├── src/
 │   ├── train.py
-│   ├── evaluate.py
-│   └── explain.py
 │
 ├── requirements.txt
 └── README.md
@@ -122,7 +119,6 @@ Visual performance monitoring includes:
 - Scikit-Learn
 - Pandas
 - NumPy
-- SHAP
 - Streamlit
 - Matplotlib
 
